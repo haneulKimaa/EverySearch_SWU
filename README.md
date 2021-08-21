@@ -11,7 +11,8 @@
 
 ### 3.  개발 툴
 + Xcode 
-+ SwiftSoup Library
++ SwiftSoup Library 
++ https://github.com/scinfu/SwiftSoup
 
 ### 4.  최적화 디바이스
 + iPhone XR/XS Max/11/11 Pro Max  
