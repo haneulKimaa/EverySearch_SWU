@@ -11,7 +11,10 @@ import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate {
 
+    // MARK: - @IBOutlet Properties
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Properties
     let searchController = UISearchController()
     let bookmarkVC = BookmarkTableViewController()
     
@@ -19,8 +22,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     let url = URL(string: "https://www.swu.ac.kr/www/camd.html")
-    
-    
     var filteredList: [Man] = []
     var isFiltering: Bool {
         let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
