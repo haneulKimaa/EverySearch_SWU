@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     let url = URL(string: "https://www.swu.ac.kr/www/camd.html")
-    var filteredList: [Man] = []
+    var filteredManArrayForSearchBar: [Man] = []
     var isFiltering: Bool {
         let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
         return (!isSearchBarEmpty && searchController.isActive) || searchBarScopeIsFiltering
@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     // 하나의 teamtitle내에 있는 연락처를 +로 이은 string의 배열
     // ex) 교목실장,02-970-5221+교목실/경건회,02-970-5222+전담교수채병관,02-970-5224 (하나의 인덱스값임)
-    var ttArr2: Array = [""]
+    var allDataAttachedArray: Array = [""]
     
     // 각 teamtitle의 집합
     var titleArr: Array = [""]
@@ -40,7 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     // team[title][name과 number] : ttArr2를 +로 쪼개고 난 배열.( team[titleArr[index]][+단위로 쪼갠 것] )
     // ex) ["교목실장,02-970-5221", "교목실/경건회,02-970-5222", "전담교수채병관,02-970-5224"] (하나의 인덱스값임. team[0])
-    var team: [[String]] = [[""]]
+    var plusDetachedTitleAndNumArray: [[String]] = [[""]]
     var callNumber: String = ""
     var indexpathNum: Int = 0
     var giveGroup: Man = Man(teamTitle: "", name: "", number: "", category: "")
@@ -82,31 +82,31 @@ class ViewController: UIViewController, UITableViewDelegate {
             ttArr.sort()
             
             for index in 0..<ttArr.count {
-                ttArr2.append(contentsOf: ttArr[index].components(separatedBy: "="))
+                allDataAttachedArray.append(contentsOf: ttArr[index].components(separatedBy: "="))
             }
-            ttArr2.removeAll {$0.isEmpty}
-            ttArr2.removeAll {$0 == "교무처.교무팀"}
-            ttArr2.removeAll {$0 == "평생교육원.평생교육팀"}
+            allDataAttachedArray.removeAll {$0.isEmpty}
+            allDataAttachedArray.removeAll {$0 == "교무처.교무팀"}
+            allDataAttachedArray.removeAll {$0 == "평생교육원.평생교육팀"}
             
             
-            for index in 0..<ttArr2.count {
+            for index in 0..<allDataAttachedArray.count {
                 if index % 2 == 1 {
-                    let array = ttArr2[index].components(separatedBy: "+")
-                    team.append(array)
+                    let array = allDataAttachedArray[index].components(separatedBy: "+")
+                    plusDetachedTitleAndNumArray.append(array)
                 }
                 else {
-                    titleArr.append(ttArr2[index])
+                    titleArr.append(allDataAttachedArray[index])
                 }
             }
-            team.removeFirst()
+            plusDetachedTitleAndNumArray.removeFirst()
             titleArr.removeFirst()
             
             
             // print("------------------")
             
-            for index in 0..<team.count {
-                for i in 0..<team[index].count {
-                    let array = team[index][i].components(separatedBy: ",")
+            for index in 0..<plusDetachedTitleAndNumArray.count {
+                for i in 0..<plusDetachedTitleAndNumArray[index].count {
+                    let array = plusDetachedTitleAndNumArray[index][i].components(separatedBy: ",")
                     let oneMan = Man(teamTitle: titleArr[index].replacingOccurrences(of: ".구성원", with: "").replacingOccurrences(of: ".", with: " - "), name: array[0], number: array[1], category: { () -> String in
                         if titleArr[index].contains("대학") || titleArr[index].contains("전공") {
                             return "대학"
@@ -134,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         
     }
     func filterContentForSearchText(_ searchText: String, scope: String = "전체") {
-        filteredList = group.filter { (man: Man) -> Bool in
+        filteredManArrayForSearchBar = group.filter { (man: Man) -> Bool in
             let doesCategoryMatch = (scope == "전체") || (man.category == scope)
             if !isSearchBarEmpty {
                 return doesCategoryMatch && (man.teamTitle.contains(searchText) || man.name.contains(searchText) || man.number.contains(searchText))
@@ -184,7 +184,7 @@ extension ViewController: UISearchResultsUpdating {
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
-            return filteredList.count
+            return filteredManArrayForSearchBar.count
         }
         return group.count
     }
@@ -193,7 +193,7 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
         if isFiltering {
-            giveGroup = self.filteredList[indexPath.row]
+            giveGroup = self.filteredManArrayForSearchBar[indexPath.row]
         }
         else {
             giveGroup = self.group[indexPath.row]
@@ -230,11 +230,11 @@ extension ViewController: UITableViewDataSource {
                         print(self.group[indexPath.row])
                     }
                     else {
-                        person.setValue(self.filteredList[indexPath.row].teamTitle, forKey: "teamTitle")
-                        person.setValue(self.filteredList[indexPath.row].name, forKey: "name")
-                        person.setValue(self.filteredList[indexPath.row].category, forKey: "category")
-                        person.setValue(self.filteredList[indexPath.row].number, forKey: "number")
-                        print(self.filteredList[indexPath.row])
+                        person.setValue(self.filteredManArrayForSearchBar[indexPath.row].teamTitle, forKey: "teamTitle")
+                        person.setValue(self.filteredManArrayForSearchBar[indexPath.row].name, forKey: "name")
+                        person.setValue(self.filteredManArrayForSearchBar[indexPath.row].category, forKey: "category")
+                        person.setValue(self.filteredManArrayForSearchBar[indexPath.row].number, forKey: "number")
+                        print(self.filteredManArrayForSearchBar[indexPath.row])
                     }
                     
                     do {
@@ -265,7 +265,7 @@ extension ViewController: UITableViewDataSource {
             // searchController.active == true여야 filleredList가 생성됨.
             // active 전엔 group(filteredList의 filter 이전 배열)
             if self.isFiltering {
-                self.callNumber = self.filteredList[indexPath.row].number
+                self.callNumber = self.filteredManArrayForSearchBar[indexPath.row].number
             }
             else {
                 self.callNumber = self.group[indexPath.row].number
