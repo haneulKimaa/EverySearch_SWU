@@ -1,6 +1,0 @@
-framework module Pods_EverySearch {
-  umbrella header "Pods-EverySearch-umbrella.h"
-
-  export *
-  module * { export * }
-}

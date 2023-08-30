@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,7 @@
 		08609551265CCEFE00F55A79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0860954F265CCEFE00F55A79 /* LaunchScreen.storyboard */; };
 		0860955A265CDA0A00F55A79 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08609559265CDA0A00F55A79 /* CustomTableViewCell.swift */; };
 		086FF447265CDE4800CFE0AD /* Man.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FF446265CDE4800CFE0AD /* Man.swift */; };
-		818A8C4DA27E9741DDF03F55 /* Pods_EverySearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542A7A17C785ACC6658958D0 /* Pods_EverySearch.framework */; };
+		08890FFE2A9F716D00E42C3A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 08890FFD2A9F716D00E42C3A /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +37,6 @@
 		08609552265CCEFE00F55A79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08609559265CDA0A00F55A79 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		086FF446265CDE4800CFE0AD /* Man.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Man.swift; sourceTree = "<group>"; };
-		10575C2F8E869A4B0EC85A8A /* Pods-EverySearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EverySearch.debug.xcconfig"; path = "Target Support Files/Pods-EverySearch/Pods-EverySearch.debug.xcconfig"; sourceTree = "<group>"; };
-		542A7A17C785ACC6658958D0 /* Pods_EverySearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EverySearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A67456FA01D915E6CC457368 /* Pods-EverySearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EverySearch.release.xcconfig"; path = "Target Support Files/Pods-EverySearch/Pods-EverySearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				818A8C4DA27E9741DDF03F55 /* Pods_EverySearch.framework in Frameworks */,
+				08890FFE2A9F716D00E42C3A /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +146,6 @@
 			children = (
 				08609543265CCEFD00F55A79 /* EverySearch */,
 				08609542265CCEFD00F55A79 /* Products */,
-				B2EF9450ADF85904DA6C77C9 /* Pods */,
-				634A7E8106673AF14F35890C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,23 +167,6 @@
 			path = EverySearch;
 			sourceTree = "<group>";
 		};
-		634A7E8106673AF14F35890C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				542A7A17C785ACC6658958D0 /* Pods_EverySearch.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B2EF9450ADF85904DA6C77C9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				10575C2F8E869A4B0EC85A8A /* Pods-EverySearch.debug.xcconfig */,
-				A67456FA01D915E6CC457368 /* Pods-EverySearch.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,17 +174,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08609555265CCEFE00F55A79 /* Build configuration list for PBXNativeTarget "EverySearch" */;
 			buildPhases = (
-				A7561E29C5519A7CAA378FF8 /* [CP] Check Pods Manifest.lock */,
 				0860953D265CCEFD00F55A79 /* Sources */,
 				0860953E265CCEFD00F55A79 /* Frameworks */,
 				0860953F265CCEFD00F55A79 /* Resources */,
-				8AAF57A05D789C7AAF23B299 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = EverySearch;
+			packageProductDependencies = (
+				08890FFD2A9F716D00E42C3A /* SwiftSoup */,
+			);
 			productName = EverySearch;
 			productReference = 08609541265CCEFD00F55A79 /* EverySearch.app */;
 			productType = "com.apple.product-type.application";
@@ -234,6 +213,9 @@
 				Base,
 			);
 			mainGroup = 08609538265CCEFD00F55A79;
+			packageReferences = (
+				08890FFC2A9F716D00E42C3A /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 08609542265CCEFD00F55A79 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -255,48 +237,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		8AAF57A05D789C7AAF23B299 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EverySearch/Pods-EverySearch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EverySearch/Pods-EverySearch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EverySearch/Pods-EverySearch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7561E29C5519A7CAA378FF8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EverySearch-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0860953D265CCEFD00F55A79 /* Sources */ = {
@@ -455,7 +395,6 @@
 		};
 		08609556265CCEFE00F55A79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10575C2F8E869A4B0EC85A8A /* Pods-EverySearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -476,7 +415,6 @@
 		};
 		08609557265CCEFE00F55A79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A67456FA01D915E6CC457368 /* Pods-EverySearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -517,6 +455,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		08890FFC2A9F716D00E42C3A /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		08890FFD2A9F716D00E42C3A /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08890FFC2A9F716D00E42C3A /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		08607DBC266611DD00515E6F /* Model.xcdatamodeld */ = {
