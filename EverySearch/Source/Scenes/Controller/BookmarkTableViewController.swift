@@ -14,7 +14,8 @@ final class BookmarkTableViewController: UITableViewController {
     var callNumber: String = ""
     var bookMarkGroup: [Man] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var context: NSManagedObjectContext = NSManagedObjectContext()
+    var context: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+
     var bookMark: [Bookmark] = []
     
     // MARK: - LifeCycle
@@ -34,11 +35,9 @@ final class BookmarkTableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItem?.tintColor = .systemBlue
-       
-        print("bookMark.count : \(bookMark.count)")
     }
     
-    // MARK: - Functions
+    // MARK: - Function
     private func fetchBookMark() {
         // 계속 bookMarkGroup 앞에
         bookMarkGroup = []
@@ -50,7 +49,6 @@ final class BookmarkTableViewController: UITableViewController {
                     if let teamTitle = bookMark[i].teamTitle, let name = bookMark[i].name, let number = bookMark[i].number, let category = bookMark[i].category {
                         let man = Man(teamTitle: teamTitle, name: name, number: number, category: category)
                         bookMarkGroup.append(man)
-                        print(bookMarkGroup[i])
                     }
                 }
             }
@@ -74,12 +72,9 @@ extension BookmarkTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BookmarkTableViewCell
-        
-        OperationQueue.main.addOperation {
-            cell.teamTitleLabel.text = self.bookMarkGroup[indexPath.row].teamTitle
-            cell.nameLabel.text = self.bookMarkGroup[indexPath.row].name
-            cell.numberLabel.text = self.bookMarkGroup[indexPath.row].number
-        }
+        cell.teamTitleLabel.text = self.bookMarkGroup[indexPath.row].teamTitle
+        cell.nameLabel.text = self.bookMarkGroup[indexPath.row].name
+        cell.numberLabel.text = self.bookMarkGroup[indexPath.row].number
         cell.selectionStyle = .none
         return cell
     }
@@ -101,7 +96,6 @@ extension BookmarkTableViewController {
                 } catch {
                     print(error.localizedDescription)
                 }
-                print(self.bookMarkGroup.count)
                 
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 OperationQueue.main.addOperation {
