@@ -10,7 +10,7 @@ import SwiftSoup
 import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate {
-
+    
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var tableView: UITableView!
     
@@ -44,10 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     var callNumber: String = ""
     var indexpathNum: Int = 0
     var giveGroup: Man = Man(teamTitle: "", name: "", number: "", category: "")
-    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    
     
     func crawl() {
         guard let myURL = url else {
@@ -62,7 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate {
             // doc내 위치 (data가 들어있는 위치로 접근)
             let element = try doc.select("#body > div > div > script")
             
-           // html -> string코드
+            // html -> string코드
             var tt = try element[0].outerHtml()
             
             // Data 정리
@@ -73,11 +70,11 @@ class ViewController: UIViewController, UITableViewDelegate {
             // 배열 생성
             var ttArr = tt.components(separatedBy: ";")
             
-        
+            
             // Data 정리 2
             ttArr.removeAll {$0.contains("push()")}
             ttArr.removeAll {!$0.contains("구성원")}
-
+            
             // 오름차순으로 sort
             ttArr.sort()
             
@@ -114,7 +111,7 @@ class ViewController: UIViewController, UITableViewDelegate {
                         else {
                             return "기관"
                         }
-                           
+                        
                         
                     }())
                     group.append(oneMan)
@@ -130,8 +127,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         } catch {
             print("error")
         }
-        
-        
     }
     func filterContentForSearchText(_ searchText: String, scope: String = "전체") {
         filteredManArrayForSearchBar = group.filter { (man: Man) -> Bool in
@@ -144,7 +139,7 @@ class ViewController: UIViewController, UITableViewDelegate {
             }
         }
         tableView.reloadData()
-        }
+    }
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchController.searchBar.resignFirstResponder()
     }
@@ -162,14 +157,12 @@ class ViewController: UIViewController, UITableViewDelegate {
         searchController.searchBar.showsScopeBar = true
         self.navigationItem.title = "SWU 전화번호부"
         self.navigationController?.navigationBar.prefersLargeTitles = true
-
+        
         // 동적 셀 크기 조정
         tableView.estimatedRowHeight = 88
         tableView.rowHeight = UITableView.automaticDimension
         crawl()
         tableView.reloadData()
-        
-        // Do any additional setup after loading the view.
     }
 }
 
@@ -206,6 +199,7 @@ extension ViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
+    
     // swipe action(left) : 원하는 cell 즐겨찾기
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "즐겨찾기", handler: {(action, view, completionHandler) in
@@ -214,9 +208,9 @@ extension ViewController: UITableViewDataSource {
             let alertController2 = UIAlertController(title: nil, message: "추가되었습니다.", preferredStyle: .alert)
             let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             let checkButton = UIAlertAction(title: "확인", style: .default, handler: nil)
-
+            
             alertController2.addAction(checkButton)
-            let deleteButton = UIAlertAction(title: "추가", style: .default, handler: {_ in
+            let deleteButton = UIAlertAction(title: "추가", style: .default, handler: { _ in
                 let context = self.appDelegate.persistentContainer.viewContext
                 let entity = NSEntityDescription.entity(forEntityName: "Bookmark", in: context)
                 
@@ -259,8 +253,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-   
-        //if
+        
         let action = UIContextualAction(style: .destructive, title: "통화", handler: {(action, view, completionHandler) in
             // searchController.active == true여야 filleredList가 생성됨.
             // active 전엔 group(filteredList의 filter 이전 배열)
@@ -271,9 +264,12 @@ extension ViewController: UITableViewDataSource {
                 self.callNumber = self.group[indexPath.row].number
             }
             
-            let numberURL = NSURL(string: "tel://" + "\(self.callNumber)")
-            UIApplication.shared.canOpenURL(numberURL as! URL)
-            UIApplication.shared.open(numberURL as! URL, options: [:], completionHandler: nil)
+            guard let numberURL = URL(string: "tel://" + "\(self.callNumber)") else {
+                self.view.showToast("없는 번호입니다.")
+                return
+            }
+            UIApplication.shared.canOpenURL(numberURL)
+            UIApplication.shared.open(numberURL)
             completionHandler(true)
         })
         action.image = UIImage(systemName: "phone.arrow.up.right.fill")
@@ -283,10 +279,14 @@ extension ViewController: UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [action])
     }
 }
+
 extension ViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    
+    func searchBar(_ searchBar: UISearchBar,
+                   selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }

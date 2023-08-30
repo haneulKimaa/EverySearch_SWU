@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082A130C2A9F6EBA006CC951 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082A130B2A9F6EBA006CC951 /* UIView+Extension.swift */; };
 		08607DBE266611DD00515E6F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 08607DBC266611DD00515E6F /* Model.xcdatamodeld */; };
 		08607DE526661D5C00515E6F /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08607DE426661D5C00515E6F /* BookmarkTableViewCell.swift */; };
 		08607DEB26662C1900515E6F /* BookmarkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08607DEA26662C1900515E6F /* BookmarkTableViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		082A130B2A9F6EBA006CC951 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		08607DBD266611DD00515E6F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		08607DE426661D5C00515E6F /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		08607DEA26662C1900515E6F /* BookmarkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +54,96 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		082A13002A9F6B2B006CC951 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				082A13032A9F6BC0006CC951 /* App */,
+				082A13022A9F6BB7006CC951 /* Utils */,
+				082A13082A9F6C8B006CC951 /* Domain */,
+				082A13072A9F6C31006CC951 /* Scenes */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		082A13012A9F6B97006CC951 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				0860954D265CCEFE00F55A79 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		082A13022A9F6BB7006CC951 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				08607DBC266611DD00515E6F /* Model.xcdatamodeld */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		082A13032A9F6BC0006CC951 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				082A130A2A9F6EAD006CC951 /* Extension */,
+				08609544265CCEFD00F55A79 /* AppDelegate.swift */,
+				08609546265CCEFD00F55A79 /* SceneDelegate.swift */,
+				0860954F265CCEFE00F55A79 /* LaunchScreen.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		082A13052A9F6C10006CC951 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0860954A265CCEFD00F55A79 /* Main.storyboard */,
+				08609559265CDA0A00F55A79 /* CustomTableViewCell.swift */,
+				08607DE426661D5C00515E6F /* BookmarkTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		082A13062A9F6C14006CC951 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				08607DEA26662C1900515E6F /* BookmarkTableViewController.swift */,
+				08609548265CCEFD00F55A79 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		082A13072A9F6C31006CC951 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				082A13052A9F6C10006CC951 /* View */,
+				082A13062A9F6C14006CC951 /* Controller */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		082A13082A9F6C8B006CC951 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				082A13092A9F6C97006CC951 /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		082A13092A9F6C97006CC951 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				086FF446265CDE4800CFE0AD /* Man.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		082A130A2A9F6EAD006CC951 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				082A130B2A9F6EBA006CC951 /* UIView+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		08609538265CCEFD00F55A79 = {
 			isa = PBXGroup;
 			children = (
@@ -73,18 +165,9 @@
 		08609543265CCEFD00F55A79 /* EverySearch */ = {
 			isa = PBXGroup;
 			children = (
-				08609544265CCEFD00F55A79 /* AppDelegate.swift */,
-				08609546265CCEFD00F55A79 /* SceneDelegate.swift */,
-				08609548265CCEFD00F55A79 /* ViewController.swift */,
-				0860954A265CCEFD00F55A79 /* Main.storyboard */,
-				0860954D265CCEFE00F55A79 /* Assets.xcassets */,
-				0860954F265CCEFE00F55A79 /* LaunchScreen.storyboard */,
 				08609552265CCEFE00F55A79 /* Info.plist */,
-				08609559265CDA0A00F55A79 /* CustomTableViewCell.swift */,
-				086FF446265CDE4800CFE0AD /* Man.swift */,
-				08607DBC266611DD00515E6F /* Model.xcdatamodeld */,
-				08607DE426661D5C00515E6F /* BookmarkTableViewCell.swift */,
-				08607DEA26662C1900515E6F /* BookmarkTableViewController.swift */,
+				082A13012A9F6B97006CC951 /* Resource */,
+				082A13002A9F6B2B006CC951 /* Source */,
 			);
 			path = EverySearch;
 			sourceTree = "<group>";
@@ -223,6 +306,7 @@
 				086FF447265CDE4800CFE0AD /* Man.swift in Sources */,
 				08609549265CCEFD00F55A79 /* ViewController.swift in Sources */,
 				08609545265CCEFD00F55A79 /* AppDelegate.swift in Sources */,
+				082A130C2A9F6EBA006CC951 /* UIView+Extension.swift in Sources */,
 				0860955A265CDA0A00F55A79 /* CustomTableViewCell.swift in Sources */,
 				08607DE526661D5C00515E6F /* BookmarkTableViewCell.swift in Sources */,
 				08607DEB26662C1900515E6F /* BookmarkTableViewController.swift in Sources */,
@@ -304,7 +388,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -359,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -378,6 +462,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3WXYTFH2K7;
 				INFOPLIST_FILE = EverySearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -398,6 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3WXYTFH2K7;
 				INFOPLIST_FILE = EverySearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
